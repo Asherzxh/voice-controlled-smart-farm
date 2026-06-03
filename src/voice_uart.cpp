@@ -49,7 +49,7 @@ static void uartSend(unsigned char* buff, int len) {
 // ===================== 公开接口 =====================
 
 void voiceUartInit() {
-  voiceSerial.begin(115200);
+  voiceSerial.begin(9600);
 }
 
 void voiceBroadcast(int msgId) {

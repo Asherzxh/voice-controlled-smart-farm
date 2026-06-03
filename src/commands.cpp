@@ -198,11 +198,15 @@ void commandsInit() {
 }
 
 int commandsPollAndExecute(const SensorData_t* data) {
-  if (voiceAvailable() <= 0)
+  if (voiceAvailable() <= 0){
+      Serial.printf("没有可用的语音命令\n");
     return 0;
+  }
+
 
   int cmd = voiceRead();
-  Serial.println(cmd);  // 调试输出
+  Serial.printf("接收到命令: %d\n", cmd);  // 调试输出
+
 
   commandsHandleCommand(cmd, data);
   return cmd;

@@ -44,7 +44,7 @@ void setup() {
 void loop() {
   // 1. 读取所有传感器
   sensorsReadAll(&sensorData);
-
+Serial.printf("循环进行了一次");
   // 2. 轮流显示传感器数据 (每 PAGE_INTERVAL 毫秒切换一页)
   unsigned long now = millis();
   if (now - lastPageSwitch >= PAGE_INTERVAL) {
@@ -57,7 +57,7 @@ void loop() {
   commandsPollAndExecute(&sensorData);
 
   // 4. 自动灌溉检测 (土壤过干 + 水池有水 → 蜂鸣器提醒)
-  commandsCheckAutoIrrigation(&sensorData);
+  //commandsCheckAutoIrrigation(&sensorData);
 
   // 5. 关闭蜂鸣器 (避免持续鸣响)
   buzzerStop();

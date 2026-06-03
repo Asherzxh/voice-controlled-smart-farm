@@ -24,8 +24,8 @@ const int PIN_SERVO         = 26;   // 舵机
 const int PIN_RELAY         = 25;   // 继电器 (水泵)
 
 // 软件串口引脚 (语音模块)
-const int PIN_UART_RX       = 3;
-const int PIN_UART_TX       = 1;
+const int PIN_UART_RX       = 5;
+const int PIN_UART_TX       = 23;
 
 // I2C 引脚 (LCD)
 const int PIN_I2C_SDA       = 21;
