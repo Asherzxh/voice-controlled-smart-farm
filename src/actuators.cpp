@@ -154,6 +154,7 @@ void fanSetSpeed(int speed) {
   }
   // 风扇直接用数字引脚高低电平控制
   digitalWrite(PIN_MOTOR_IN1, HIGH);
+  Serial.printf("风扇速度设置为 %d\n,%d号引脚", speed,PIN_MOTOR_IN1);
   digitalWrite(PIN_MOTOR_IN2, LOW);
 }
 
@@ -183,7 +184,8 @@ void buzzerStop() {
 // ===================== 舵机 (喂食) =====================
 
 void servoFeedOpen() {
-  feedServo.write(80);   // 打开喂食口
+  feedServo.write(80); 
+
 }
 
 void servoFeedClose() {

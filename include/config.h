@@ -24,8 +24,8 @@ const int PIN_SERVO         = 26;   // 舵机
 const int PIN_RELAY         = 25;   // 继电器 (水泵)
 
 // 软件串口引脚 (语音模块)
-const int PIN_UART_RX       = 5;
-const int PIN_UART_TX       = 23;
+const int PIN_UART_RX       = 23;
+const int PIN_UART_TX       = 5;
 
 // I2C 引脚 (LCD)
 const int PIN_I2C_SDA       = 21;
@@ -55,6 +55,7 @@ const int CMD_FAN_SLOW       = 8;   // 风小
 
 // 灌溉
 const int CMD_PUMP_ON        = 9;   // 继电器控制水泵
+const int CMD_PUMP_OFF       = 10;  // 关闭水泵
 
 // 音乐
 const int CMD_MUSIC_ON       = 11;  // 播放音乐

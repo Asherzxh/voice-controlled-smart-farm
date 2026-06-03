@@ -46,6 +46,25 @@ static void cmdFeedControl(int cmd) {
   }
 }
 
+// 水泵控制命令
+static void cmdPumpControl(int cmd, const SensorData_t* data) {
+  switch (cmd) {
+    case CMD_PUMP_ON:
+      
+        lcdClear();
+        lcdShowLine(0, "Irrigating...");
+        lcdShowLine(1, "Pump Working...");
+        delay(1000);
+        pumpRun(3000);
+        lcdClear();
+      break;
+    case CMD_PUMP_OFF:
+     pumpOff();
+      break;
+  }
+}
+
+
 // 单项播报命令 (温度/湿度/光照/雨水/距离/土壤/水位)
 static void cmdReportSingle(int cmd, const SensorData_t* data) {
   switch (cmd) {
@@ -198,15 +217,12 @@ void commandsInit() {
 }
 
 int commandsPollAndExecute(const SensorData_t* data) {
-  if (voiceAvailable() <= 0){
-      Serial.printf("没有可用的语音命令\n");
+  if (voiceAvailable() <= 0) {
     return 0;
   }
 
-
   int cmd = voiceRead();
-  Serial.printf("接收到命令: %d\n", cmd);  // 调试输出
-
+  Serial.printf("Voice CMD: %d\n", cmd);  // 调试输出
 
   commandsHandleCommand(cmd, data);
   return cmd;
@@ -239,12 +255,9 @@ void commandsHandleCommand(int cmd, const SensorData_t* data) {
     return;
   }
 
-  // 灌溉水泵 (仅在土壤过干且水池有水时允许)
+  // 水泵控制
   if (cmd == CMD_PUMP_ON) {
-    if (data->soilPercent <= SOIL_DRY_THRESHOLD && data->waterLevel >= WATER_MIN_LEVEL) {
-      delay(1000);
-      pumpRun(1100);
-    }
+    cmdPumpControl(cmd, data);
     return;
   }
 

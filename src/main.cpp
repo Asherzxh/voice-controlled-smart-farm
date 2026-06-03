@@ -45,6 +45,9 @@ void loop() {
   // 1. 读取所有传感器
   sensorsReadAll(&sensorData);
 Serial.printf("循环进行了一次");
+Serial.printf("温度: %d °C, 湿度: %d %%, 光照: %d, 雨滴: %d %%, 土壤: %d %%\n,水位: %d, 距离: %.1f cm\n", 
+              sensorData.temperature, sensorData.humidity, sensorData.lightValue,
+              sensorData.rainPercent, sensorData.soilPercent,sensorData.waterLevel, sensorData.distance);
   // 2. 轮流显示传感器数据 (每 PAGE_INTERVAL 毫秒切换一页)
   unsigned long now = millis();
   if (now - lastPageSwitch >= PAGE_INTERVAL) {
