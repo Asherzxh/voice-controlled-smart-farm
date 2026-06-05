@@ -29,7 +29,7 @@ static unsigned long lastPageSwitch = 0;
 #define PAGE_COUNT     4      // 共 4 页
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   // 按顺序初始化各模块
   sensorsInit();

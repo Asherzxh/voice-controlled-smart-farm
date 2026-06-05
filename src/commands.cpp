@@ -178,15 +178,15 @@ static void cmdGetAdvice(const SensorData_t* data) {
 
   if (data->soilPercent <= SOIL_DRY_THRESHOLD) {
     lcdShowLine(1, "Suggest: Water");
-    voiceBroadcast(U_MSG_BOBAO6);
+    voiceBroadcast(U_MSG_BOBAO18);
     delay(2000);
   } else if (data->temperature > 30) {
     lcdShowLine(1, "Suggest: Fan");
-    voiceBroadcast(U_MSG_BOBAO1);
+    voiceBroadcast(U_MSG_BOBAO17);
     delay(2000);
   } else {
     lcdShowLine(1, "System Normal");
-    voiceBroadcast(U_MSG_BOBAO2);
+    voiceBroadcast(U_MSG_BOBAO19);
     delay(2000);
   }
   lcdClear();
@@ -194,8 +194,6 @@ static void cmdGetAdvice(const SensorData_t* data) {
 
 // 执行建议: 自动执行灌溉或降温
 static void cmdExecAdvice(const SensorData_t* data) {
-  lcdClear();
-  lcdShowLine(0, "Executing Advise");
 
   if (data->soilPercent <= SOIL_DRY_THRESHOLD) {
     lcdShowLine(1, "Pump Working... ");
@@ -207,7 +205,7 @@ static void cmdExecAdvice(const SensorData_t* data) {
     delay(3000);
     fanStop();
   }
-  lcdClear();
+ 
 }
 
 // ===================== 公开接口 =====================
@@ -218,6 +216,7 @@ void commandsInit() {
 
 int commandsPollAndExecute(const SensorData_t* data) {
   if (voiceAvailable() <= 0) {
+    Serial.println("No voice command available.");
     return 0;
   }
 

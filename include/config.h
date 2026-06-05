@@ -62,22 +62,22 @@ const int CMD_MUSIC_ON       = 11;  // 播放音乐
 const int CMD_MUSIC_OFF      = 12;  // 关闭音乐
 
 // 喂食舵机
-const int CMD_FEED_OPEN      = 34;  // 开始喂食
-const int CMD_FEED_CLOSE     = 35;  // 停止喂食
+const int CMD_FEED_OPEN      = 13;  // 开始喂食
+const int CMD_FEED_CLOSE     = 14;  // 停止喂食
 
 // 语音播报
-const int CMD_REPORT_TEMP    = 47;  // 播报温度
-const int CMD_REPORT_HUMI    = 48;  // 播报湿度
-const int CMD_REPORT_LIGHT   = 50;  // 播报光照
-const int CMD_REPORT_RAIN    = 49;  // 播报雨水量
-const int CMD_REPORT_DIST    = 54;  // 播报距离
-const int CMD_REPORT_SOIL    = 51;  // 播报土壤湿度
-const int CMD_REPORT_WATER   = 52;  // 播报水位
+const int CMD_REPORT_TEMP    = 15;  // 播报温度
+const int CMD_REPORT_HUMI    = 16;  // 播报湿度
+const int CMD_REPORT_LIGHT   = 17;  // 播报光照
+const int CMD_REPORT_RAIN    = 18;  // 播报雨水量
+const int CMD_REPORT_DIST    = 19;  // 播报距离
+const int CMD_REPORT_SOIL    = 20;  // 播报土壤湿度
+const int CMD_REPORT_WATER   = 21;  // 播报水位
 
 // 综合指令
-const int CMD_REPORT_ALL     = 60;  // 播报全部信息
-const int CMD_GET_ADVICE     = 61;  // 根据信息提建议
-const int CMD_EXEC_ADVICE    = 62;  // 实施建议
+const int CMD_REPORT_ALL     = 22;  // 播报全部信息
+const int CMD_GET_ADVICE     = 23;  // 根据信息提建议
+const int CMD_EXEC_ADVICE    = 24;  // 实施建议
 
 // ===================== 灌溉阈值 =====================
 const int SOIL_DRY_THRESHOLD = 15;   // 土壤湿度低于此值需要灌溉
@@ -100,7 +100,10 @@ const int U_MSG_BOBAO4       = 6;   // 播报4 (空气湿度)
 const int U_MSG_BOBAO5       = 7;   // 播报5 (光照)
 const int U_MSG_BOBAO6       = 8;   // 播报6 (土壤湿度)
 const int U_MSG_BOBAO7       = 9;   // 播报7 (水深)
-const int U_MSG_BOBAO9       = 11;  // 播报9 (距离)
-const int U_MSG_BOBAO16      = 18;  // 播报16 (厘米)
+const int U_MSG_BOBAO9       = 10;  // 播报9 (距离)
+const int U_MSG_BOBAO16      = 14;  // 播报16 (厘米)
+const int U_MSG_BOBAO17      = 11;  // 播报17 (温度过高)
+const int U_MSG_BOBAO18      = 12;  // 播报18 (土壤湿度过低)      
+const int U_MSG_BOBAO19      = 13;  // 播报19 (一切正常)          
 
 #endif // CONFIG_H
