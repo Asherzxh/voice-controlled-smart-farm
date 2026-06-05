@@ -28,7 +28,9 @@ void sensorsReadAll(SensorData_t* data) {
 
   // 水滴传感器 → 百分比
   int steamRaw = analogRead(PIN_STEAM);
+  #if 0  // 调试时打开
   Serial.printf("水滴传感器原始值: %d\n", steamRaw);
+  #endif
   data->rainPercent = (int)round(((4096-steamRaw) / 4096.0) * 100);
 
   // 土壤湿度

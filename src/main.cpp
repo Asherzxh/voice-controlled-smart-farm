@@ -44,10 +44,11 @@ void setup() {
 void loop() {
   // 1. 读取所有传感器
   sensorsReadAll(&sensorData);
-Serial.printf("循环进行了一次");
-Serial.printf("温度: %d °C, 湿度: %d %%, 光照: %d, 雨滴: %d %%, 土壤: %d %%\n,水位: %d, 距离: %.1f cm\n", 
-              sensorData.temperature, sensorData.humidity, sensorData.lightValue,
-              sensorData.rainPercent, sensorData.soilPercent,sensorData.waterLevel, sensorData.distance);
+  #if 1  // 调试打印 (发布时关闭)
+  Serial.printf("温度: %d °C, 湿度: %d %%, 光照: %d, 雨滴: %d %%, 土壤: %d %%, 水位: %d, 距离: %.1f cm\n",
+                sensorData.temperature, sensorData.humidity, sensorData.lightValue,
+                sensorData.rainPercent, sensorData.soilPercent, sensorData.waterLevel, sensorData.distance);
+  #endif
   // 2. 轮流显示传感器数据 (每 PAGE_INTERVAL 毫秒切换一页)
   unsigned long now = millis();
   if (now - lastPageSwitch >= PAGE_INTERVAL) {
@@ -59,9 +60,6 @@ Serial.printf("温度: %d °C, 湿度: %d %%, 光照: %d, 雨滴: %d %%, 土壤:
   // 3. 轮询语音命令并执行
   commandsPollAndExecute(&sensorData);
 
-  // 4. 自动灌溉检测 (土壤过干 + 水池有水 → 蜂鸣器提醒)
-  //commandsCheckAutoIrrigation(&sensorData);
-
-  // 5. 关闭蜂鸣器 (避免持续鸣响)
+  // 4. 关闭蜂鸣器 (避免持续鸣响)
   buzzerStop();
 }
