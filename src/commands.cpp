@@ -137,11 +137,13 @@ static void cmdReportAll(const SensorData_t* data) {
   voiceReportInt(data->lightValue);
   delay(2000);
 
-  voiceBroadcast(U_MSG_BOBAO1);
-  delay(2000);
-  voiceReportInt(data->temperature);
-  voiceBroadcast(U_MSG_BOBAO2);
-  delay(2000);
+ delay(2000);
+      voiceBroadcast(U_MSG_BOBAO1);
+      delay(2000);
+      voiceReportInt(data->temperature);
+      delay(2000);
+      voiceBroadcast(U_MSG_BOBAO2);
+      delay(2000);
 
   voiceBroadcast(U_MSG_BOBAO6);
   delay(2000);
@@ -351,13 +353,7 @@ static void cmdExecAdvice(const SensorData_t* data) {
 
   // --- P10 级: 物体靠近 ---
   if (eval.distNear) {
-    ledcWriteTone(BUZZER_CHANNEL, 800);
-    delay(100);
-    ledcWrite(BUZZER_CHANNEL, 0);
-    delay(100);
-    ledcWriteTone(BUZZER_CHANNEL, 800);
-    delay(100);
-    ledcWrite(BUZZER_CHANNEL, 0);
+ 
     didSomething = true;
   }
 

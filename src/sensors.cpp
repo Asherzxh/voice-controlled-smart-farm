@@ -23,15 +23,19 @@ void sensorsReadAll(SensorData_t* data) {
   data->temperature = DHT11.temperature;
   data->humidity    = DHT11.humidity;
 
-  // 光敏传感器
-  data->lightValue = analogRead(PIN_PHOTOSENSOR);
+  // 光敏传感器 (减去暗光基准偏移, 负数归零)
+  {
+    int raw = analogRead(PIN_PHOTOSENSOR);
+    int calibrated = raw - LIGHT_ZERO_OFFSET;
+    data->lightValue = (calibrated > 0) ? calibrated : 0;
+  }
 
   // 水滴传感器 → 百分比
   int steamRaw = analogRead(PIN_STEAM);
-  #if 0  // 调试时打开
+  #if 1  // 调试时打开
   Serial.printf("水滴传感器原始值: %d\n", steamRaw);
   #endif
-  data->rainPercent = (int)round(((4096-steamRaw) / 4096.0) * 100);
+  data->rainPercent = (int)round((steamRaw / 4096.0) * 100);
 
   // 土壤湿度
   data->soilRaw = analogRead(PIN_SOIL_HUMIDITY);
